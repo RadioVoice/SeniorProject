@@ -6,9 +6,9 @@ text_file_name = sys.argv[1]
 path_to_file = "/usr/lib/cgi-bin/textfiles/" + text_file_name
 text_file = open(path_to_file, "r")
 text = text_file.read()
-# blob = TextBlob(text)
+blob = TextBlob(text)
 
-blob = TextBlob("Welcome to the [Company] website. My company believes that good financial decisions don't have to be "
+blobTest = TextBlob("Welcome to the [Company] website. My company believes that good financial decisions don't have to be "
                 "confusing. I can provide simple, proven techniques that can help you make the most of your money and "
                 "help achieve more of your financial goals. This site will not only introduce you to my company "
                 "philosophy and services, but it will also offer a wealth of educational materials, articles, "
@@ -20,7 +20,7 @@ blob = TextBlob("Welcome to the [Company] website. My company believes that good
                 "philosophy")
 
 words = {}
-for np in blob.noun_phrases:
+for np in blobTest.noun_phrases:
     num_occurrences = words.get(np, 0)
     update_word = {np: num_occurrences + 1}
     words.update(update_word)
