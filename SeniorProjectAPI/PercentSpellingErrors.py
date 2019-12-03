@@ -1,6 +1,11 @@
 import sys
+import cgitb
+from textblob import TextBlob
+import cgi
 
-from textblob import *
+cgitb.enable()
+fs = cgi.FieldStorage()
+full = -1
 
 text_file_name = sys.argv[1]
 path_to_file = "/usr/lib/cgi-bin/textfiles/"+text_file_name
@@ -16,6 +21,11 @@ for word in blob.sentences.words:
     if word != possible_words[0]:
         counter += 1
 
-print(counter/word_count * 100)
+percent = counter/word_count * 100
+
+print("Content-Type: text/plain\r\n\r\n")
+print()
+print("{ \"Data\":"+percent+" }")
+print(fs.getvalue("a"))
 
 text_file.close()
